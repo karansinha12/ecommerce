@@ -54,7 +54,7 @@ userSchema.virtual('password')
 
 userSchema.virtual('fullName')
 .set(function(){
-    return `${this.firstName} ${this.lastName}`
+    return this.firstName + ' ' + this.lastName;
 })
 
 

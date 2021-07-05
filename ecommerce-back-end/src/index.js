@@ -3,7 +3,7 @@ const env = require('dotenv')
 const app = express();
 const mongoose = require('mongoose')
 
-const authRoutes = require('./routes/auth')
+const adminRoutes = require('./routes/admin/auth')
 
 env.config();
 mongoose.connect('mongodb://localhost:27017/test', {
@@ -19,7 +19,7 @@ mongoose.connect('mongodb://localhost:27017/test', {
 
 
 app.use(express.json());
-app.use('/api', authRoutes);
+app.use('/api', adminRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
