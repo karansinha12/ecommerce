@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('mongoose')
 
 const adminRoutes = require('./routes/admin/auth')
+const userRoutes = require('./routes/auth')
 
 env.config();
 mongoose.connect('mongodb://localhost:27017/test', {
@@ -20,6 +21,7 @@ mongoose.connect('mongodb://localhost:27017/test', {
 
 app.use(express.json());
 app.use('/api', adminRoutes);
+app.use('/api', userRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);

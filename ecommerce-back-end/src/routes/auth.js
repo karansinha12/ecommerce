@@ -1,5 +1,7 @@
 const express = require('express');
 const { signup, signin, requiresignin } = require('../controllers/auth');
+const { validateSignupRequest,validateSigninRequest, isValidated } = require('../validator/auth');
+
 const router = express.Router();
 
 
@@ -7,9 +9,9 @@ const router = express.Router();
 
 
 
-router.post('/signin', signin)
+router.post('/signin',validateSigninRequest,isValidated, signin)
 
-router.post('/signup', signup)
+router.post('/signup',validateSignupRequest, isValidated, signup)
 
 // router.post('/profile',requiresignin , (req, res) => {
 //     res.json({"user": "profile"})

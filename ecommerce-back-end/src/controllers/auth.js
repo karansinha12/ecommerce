@@ -7,18 +7,21 @@ exports.signup = (req, res) => {
         if(user){
             return res.status(400).json({message: "user already exists"})
         }
+        if(error){
+            return res.status(400).json({message: "something went wrong abc"})
+        }
         const {firstName, lastName, email, password} = req.body;
         const _user = new User({
              firstName,
              lastName,
              email,
              password,
-            username: Math.random().toString 
+            username: Math.random().toString()
         })
 
         _user.save((err, data) => {
             if(err){
-                return res.status(400).json({message: "something went wrong"})
+                return res.status(400).json({message: err})
             }
 
             if(data){
