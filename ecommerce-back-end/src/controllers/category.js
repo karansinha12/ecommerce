@@ -29,29 +29,30 @@ exports.getCategories = (req, res) => {
             return res.status(400).json({err})
         }
         if(categories){
-            const categoryList = createCategories(categories);
-            return res.status(201).json({categoryList})
+            //const categoryList = createCategories(categories);
+            return res.status(201).json({categories})
         }
     })
 }
 
-const createCategories = (categories, parentId=null) => {
-    const categoryList = [];
-    if(parentId == null){
-        categories.filter((cat) => {
-            cat.parentId == undefined;
-        })
-    }
-    else{
-        categories.filter((cat) => { cat.parentId == parentId })
-    }
+// const createCategories = (categories, parentId=null) => {
+//     const categoryList = [];
+//     if(parentId == null){
+//         categories.filter((cat) => {
+//             cat.parentId == undefined;
+//         })
+//     }
+//     else{
+//         categories.filter((cat) => { cat.parentId == parentId })
+//     }
 
-    for(let cat of categories){
-        categoryList.push({
-            _id: cat._id,
-            name: cat.name,
-            slug: cat.slug,
-            children: createCategories(categories, cat._id)
-        })
-    }
-}
+//     for(let cat of categories){
+//         categoryList.push({
+//             _id: cat._id,
+//             name: cat.name,
+//             slug: cat.slug,
+//             children: createCategories(categories, cat._id)
+//         })
+//     }
+//     return categoryList;
+// }
